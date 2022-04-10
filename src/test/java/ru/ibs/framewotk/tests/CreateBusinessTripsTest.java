@@ -1,17 +1,20 @@
 package ru.ibs.framewotk.tests;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import ru.ibs.framework.utils.MyAllureListener;
 import ru.ibs.framewotk.basetests.BaseTest;
 
+@ExtendWith(MyAllureListener.class)
 public class CreateBusinessTripsTest extends BaseTest {
 
     @Test
+    @DisplayName("Учебный тест")
     public void startTest() {
-
         app.getLoginPage()
                 .fillLoginFields("Irina Filippova", "testing")
                 .signIn()
-                .checkOpenMainPage()
                 .checkOpenMainPage()
                 .selectMenu("Расходы")
                 .selectSubMenu("Командировки")
