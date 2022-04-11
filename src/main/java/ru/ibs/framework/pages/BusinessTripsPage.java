@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class BusinessTripsPage extends BasePage {
 
@@ -14,7 +15,6 @@ public class BusinessTripsPage extends BasePage {
     @FindBy(xpath = "//*[text()='Создать командировку']")
     private WebElement createBusinessTripsButton;
 
-    @Step("Проверяем, что открылась страница 'Командировки'")
     public BusinessTripsPage checkOpenBusinessTripsPage() {
         waitElementToBeVisible(title);
         assertEquals("Расходы/ Командировки", title.getText(),
@@ -22,9 +22,12 @@ public class BusinessTripsPage extends BasePage {
         return this;
     }
 
-    @Step("Нажимаем на копку 'Создать командировку'")
-    public CreateBusinessTripsPage clickCreateBusinessTrips() {
-        waitElementToBeClickable(createBusinessTripsButton).click();
+    public CreateBusinessTripsPage clickCreateBusinessTrips(String buttonName) {
+        if (buttonName.equalsIgnoreCase("Создать командировку")) {
+            waitElementToBeClickable(createBusinessTripsButton).click();
+            return app.getCreateBusinessTripsPage();
+        }
+        fail("Кнопка " + buttonName + " не найдена");
         return app.getCreateBusinessTripsPage();
     }
 }

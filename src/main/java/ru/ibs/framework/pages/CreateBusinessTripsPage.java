@@ -46,7 +46,6 @@ public class CreateBusinessTripsPage extends BasePage {
     @FindBy(xpath = "//span[@class='validation-failed']")
     private List<WebElement> listErrors;
 
-    @Step("Проверяем, что открылась страница создания командировки")
     public CreateBusinessTripsPage checkOpenCreateBusinessTripsPage() {
         waitElementToBeVisible(title);
         assertEquals("Создать командировку", title.getText(),
@@ -54,9 +53,12 @@ public class CreateBusinessTripsPage extends BasePage {
         return this;
     }
 
-    @Step("У подразделения выбираем '{value}'")
-    public CreateBusinessTripsPage selectDepartment(String value) {
-        fillSelect(fieldDepartment, value);
+    public CreateBusinessTripsPage selectDepartment(String fieldName, String value) {
+        if (fieldName.equalsIgnoreCase("Подразделения")) {
+            fillSelect(fieldDepartment, value);
+            return this;
+        }
+        fail("Поле " + fieldName + " не найдено.");
         return this;
     }
 

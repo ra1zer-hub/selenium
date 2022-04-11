@@ -20,7 +20,6 @@ public class MainPage extends BasePage {
     @FindBy(xpath = "//ul[contains(@class, 'menu_level_1')]/li[@data-route or @class='dropdown']")
     private List<WebElement> listSubMenu;
 
-    @Step("Проверяем, что открылась главная страница")
     public MainPage checkOpenMainPage() {
         waitElementToBeVisible(title);
         assertEquals("Панель быстрого запуска", title.getText(),
@@ -28,7 +27,6 @@ public class MainPage extends BasePage {
         return this;
     }
 
-    @Step("Выбираем меню '{menuName}'")
     public MainPage selectMenu(String menuName) {
         for (WebElement menuItem : listMenu) {
             if (menuItem.getText().trim().equalsIgnoreCase(menuName)) {
@@ -40,7 +38,6 @@ public class MainPage extends BasePage {
         return this;
     }
 
-    @Step("Выбираем подменю '{menuName}'")
     public BusinessTripsPage selectSubMenu(String menuName) {
         for (WebElement menuItem : listSubMenu) {
             if (menuItem.getText().trim().equalsIgnoreCase(menuName)) {
