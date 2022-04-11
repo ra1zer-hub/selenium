@@ -62,7 +62,6 @@ public class CreateBusinessTripsPage extends BasePage {
         return this;
     }
 
-    @Step("Открываем список организаций и выбираем '{value}'")
     public CreateBusinessTripsPage openListAndSelectOrganization(String value) {
         waitElementToBeClickable(openListButton).click();
         waitElementToBeClickable(organizationButton).click();
@@ -70,7 +69,6 @@ public class CreateBusinessTripsPage extends BasePage {
         return this;
     }
 
-    @Step("Выбираем чекбокс '{value}'")
     public CreateBusinessTripsPage selectCheckbox(String value) {
         for (WebElement checkbox : listCheckbox) {
             if (checkbox.getText().trim().equalsIgnoreCase(value)) {
@@ -82,7 +80,6 @@ public class CreateBusinessTripsPage extends BasePage {
         return this;
     }
 
-    @Step("Поле {nameField} заполняем значением '{value}'")
     public CreateBusinessTripsPage fillFieldByName(String nameField, String value) {
         switch (nameField) {
             case "Город выбытия":
@@ -104,13 +101,11 @@ public class CreateBusinessTripsPage extends BasePage {
         return this;
     }
 
-    @Step("Нажимаем на копку 'Сохранить и закрыть'")
     public CreateBusinessTripsPage clickSaveAndClose() {
         waitElementToBeClickable(saveAndCloseButton).click();
         return this;
     }
 
-    @Step("Проверяем на странице наличие ошибки с текстом '{errorText}'")
     public CreateBusinessTripsPage checkErrorInPage(String errorText) {
         for (WebElement error : listErrors) {
             if (error.getText().trim().equalsIgnoreCase(errorText)) {
